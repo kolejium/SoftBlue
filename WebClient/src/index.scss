@@ -1,0 +1,24 @@
+@import url('bulma/css/bulma.css');
+@import url('material-design-icons/iconfont/material-icons.css');
+
+html {
+    overflow-y: auto !important;
+}
+
+#root {
+    width: 100vw !important;
+    height: 100vh !important;
+}
+
+.full-size {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.parent-size {
+    width: inherit;
+    height: inherit;
+}

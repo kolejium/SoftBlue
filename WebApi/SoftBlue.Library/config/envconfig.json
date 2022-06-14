@@ -1,0 +1,13 @@
+﻿{
+  "ConnectionStrings": {
+    "PostgreSql": "Host=localhost;Port=5432;Database=library;Username=postgres;Password=12345678"
+  },
+  "ApiSettings": {
+    "StorageSettings": {
+      "StorageApiBaseUrl": "http://localhost:5109",
+      "GetFile": "/api/storage/{0}",
+      "UploadFile": "/api/storage",
+      "DeleteFile": "/api/storage/{0}" 
+    }
+  } 
+}

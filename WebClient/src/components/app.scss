@@ -1,0 +1,17 @@
+* {
+    z-index: inherit;
+}
+
+.row-b {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.z-1000 {
+    z-index: 1000;
+}
+
+.z-1500 {
+    z-index: 1500;
+}

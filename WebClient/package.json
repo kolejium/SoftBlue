@@ -1,0 +1,69 @@
+{
+  "name": "webclient",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix --ext .ts,.tsx ."
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/icons-material": "^5.8.2",
+    "@mui/material": "^5.8.2",
+    "@octetstream/object-to-form-data": "^2.0.0",
+    "@reduxjs/toolkit": "^1.8.2",
+    "@types/pdf-viewer-reactjs": "^2.2.2",
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.5",
+    "bootstrap": "^5.1.3",
+    "buffer": "^6.0.3",
+    "bulma": "^0.9.4",
+    "material-design-icons": "^3.0.1",
+    "object-query-string": "^1.2.0",
+    "object-to-formdata": "^4.4.2",
+    "pdf-viewer-reactjs": "^2.2.3",
+    "qs": "^6.10.5",
+    "react": "^18.1.0",
+    "react-bootstrap": "^2.4.0",
+    "react-dom": "^18.1.0",
+    "react-pdf": "^5.7.2",
+    "react-redux": "^8.0.2",
+    "react-scripts": "5.0.1",
+    "sass": "^1.52.2",
+    "ts-simple-nameof": "^1.3.1",
+    "usehooks-ts": "^2.5.4",
+    "web-vitals": "^2.1.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/qs": "^6.9.7",
+    "@types/react-pdf": "^5.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.27.1",
+    "@typescript-eslint/parser": "^5.27.1",
+    "eslint": "^8.17.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.2",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.0",
+    "typescript": "^4.7.3"
+  }
+}
