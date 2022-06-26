@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import IError from '../../interfaces/responses/IError';
-import Book from '../../types/book';
+import BookType from '../../types/book';
 import * as ModalActions from '../slicers/modal.slice';
 import { get, edit, pdf, remove } from './books.thunk';
 
@@ -36,7 +36,7 @@ export const removeBook = createAsyncThunk<void, string, { rejectValue: IError }
 	}
 );
 
-export const editBook = createAsyncThunk<void, Book, { rejectValue: IError }>(
+export const editBook = createAsyncThunk<void, BookType, { rejectValue: IError }>(
 	'modal/editBook',
 	async (book, { dispatch }) => {
 		dispatch(edit(book));

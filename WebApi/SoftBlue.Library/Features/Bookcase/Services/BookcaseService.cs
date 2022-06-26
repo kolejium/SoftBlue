@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Linq.Expressions;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SoftBlue.Common.Enums;
@@ -101,9 +102,18 @@ public class BookcaseService : IBookcaseService
 
     public async Task<OperationResult<PagedResponse<BookcaseDto>>> Get(GetBookcasesRequest request)
     {
+        Expression<Func<BookcaseEntity, bool>> expression = entity => true;
+
+        if (request.StartOrder != null)
+            expression = expression.AndAlso(entity => entity.Order >= request.StartOrder);
+
+        if (request.EndOrder != null)
+            expression = expression.AndAlso(entity => entity.Order <= request.StartOrder);
+
         var sort = new SortDefinition { Order = EOrder.Asc, Property = nameof(BookcaseEntity.Order) };
-        var (total, items) = await _context.Bookcases.Include(x => x.Books).GetRange(request.Page, request.Size,
-            null, sort);
+        var (total, items) = await _context.Bookcases
+            .Include(x => x.Books)
+            .GetRange(request.Page, request.Size, request.Direction, expression, sort);
 
         return new OperationResult<PagedResponse<BookcaseDto>>(new PagedResponse<BookcaseDto>
             { Items = _mapper.Map<IEnumerable<BookcaseEntity>, IEnumerable<BookcaseDto>>(items), Total = total });

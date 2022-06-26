@@ -1,21 +1,21 @@
 import { createSlice, isAnyOf, PayloadAction } from '@reduxjs/toolkit';
 import EStatus from '../../enums/estatus';
-import Book from '../../types/book';
+import BookType from '../../types/book';
 
 import { create, get, remove, edit, pdf } from '../thunks/books.thunk';
 
 type state = {
-	book: Book | undefined,
+	selectedBook: BookType | undefined,
 	pdf: string | undefined,
 	status: EStatus
 }
 
 const booksSlice = createSlice({
 	name: 'books',
-	initialState: { book: undefined, status: EStatus.Default } as state,
+	initialState: { selectedBook: undefined, status: EStatus.Default } as state,
 	reducers: {
-		set (state, action : PayloadAction<Book>) {
-			state.book = action.payload;
+		set (state, action : PayloadAction<BookType>) {
+			state.selectedBook = action.payload;
 		},
 		setPdf (state, action: PayloadAction<string>) {
 			state.pdf = action.payload;
@@ -39,17 +39,17 @@ const booksSlice = createSlice({
 
 		builder.addMatcher(isAnyOf(create.pending, edit.pending, get.pending, remove.pending), (state, action) => {
 			state.status = EStatus.Loading;
-			state.book = undefined;
+			state.selectedBook = undefined;
 		});
 
 		builder.addMatcher(isAnyOf(create.fulfilled, edit.fulfilled, get.fulfilled, remove.fulfilled), (state, action) => {
 			state.status = EStatus.Resolved;
-			state.book = action.payload;
+			state.selectedBook = action.payload;
 		});
 
 		builder.addMatcher(isAnyOf(create.rejected, edit.rejected, get.rejected, remove.rejected), (state, action) => {
 			state.status = EStatus.Rejected;
-			state.book = undefined;
+			state.selectedBook = undefined;
 		});
 	}
 });

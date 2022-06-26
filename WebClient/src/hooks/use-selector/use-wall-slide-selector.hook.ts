@@ -1,5 +1,5 @@
-// import useTypedSelector from './use-typed-selector.hook';
+import useTypedSelector from './use-typed-selector.hook';
 
-// const useWallSliderSelector = () => useTypedSelector(state => state.wallSlider);
+const useWallSliderSelector = () => useTypedSelector(state => state.walls);
 
-export { }; // default useWallSliderSelector;
+export default useWallSliderSelector;

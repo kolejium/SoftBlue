@@ -22,10 +22,14 @@ const modalSlice = createSlice({
 		pdf (state) {
 			state.name = 'pdf';
 			state.visible = true;
+		},
+		createBookcase (state) {
+			state.name = 'createBookcase';
+			state.visible = true;
 		}
 	}
 });
 
-export const { changeVisible, createBook, editBook, deleteBook, pdf } = modalSlice.actions;
+export const { changeVisible, createBook, editBook, deleteBook, pdf, createBookcase } = modalSlice.actions;
 
 export default modalSlice.reducer;

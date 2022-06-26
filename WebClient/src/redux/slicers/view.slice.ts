@@ -1,26 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import ViewMode from '../../types/viewMode';
+import ISize from '../../interfaces/ui/ISize';
 
+type state = {
+    size: ISize | undefined
+}
 
 const viewSlice = createSlice({
 	name: 'view',
-	initialState: 'simple' as ViewMode,
+	initialState: { size: undefined } as state,
 	reducers: {
-		changeView (state, action: PayloadAction<ViewMode>) {
-			state = action.payload;
-		},
-		reversView (state) {
-			return state === 'smart' ? 'simple' : 'smart';
-		},
-		simple (state) {
-			state = 'simple';
-		},
-		smart (state) {
-			state = 'smart';
+		setSizeView (state, action: PayloadAction<ISize>) {
+			state.size = action.payload;
 		}
 	}
 });
 
-export const { simple, smart, changeView, reversView } = viewSlice.actions;
+export const { setSizeView } = viewSlice.actions;
 
 export default viewSlice.reducer;

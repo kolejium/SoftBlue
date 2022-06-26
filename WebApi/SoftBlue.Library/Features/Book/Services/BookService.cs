@@ -157,8 +157,8 @@ public class BookService : IBookService
             sort = new SortDefinition { Property = request.OrderField, Order = request.Order };
 
 
-        var (total, items) = await _context.Books.GetRange(request.Page, request.Size,
-            expression, sort);
+        var (total, items) =
+            await _context.Books.GetRange(request.Page, request.Size, request.Direction, expression, sort);
 
         return new OperationResult<PagedResponse<BookDto>>(new PagedResponse<BookDto>
             { Items = _mapper.Map<IEnumerable<BookEntity>, IEnumerable<BookDto>>(items), Total = total });

@@ -12,9 +12,9 @@ const DeleteBookModal = () => {
 	const modal = useModalSelector();
 
 	const onCloseHandle = () => dispatch(changeVisible(false));
-	const onSubmitHandle = () => dispatch(removeBook(books.book?.id as string));
+	const onSubmitHandle = () => dispatch(removeBook(books.selectedBook?.id as string));
 
-	return <Dialog open={modal.visible && books.book !== undefined} onClose={onCloseHandle}>
+	return <Dialog open={modal.visible && books.selectedBook !== undefined} onClose={onCloseHandle}>
 		<DialogTitle>
 			Delete book
 		</DialogTitle>
@@ -22,7 +22,7 @@ const DeleteBookModal = () => {
 			<DialogContentText>
 				Are you sure want to delete book:
 			</DialogContentText>
-			<BookItem id={books.book?.id as string} name={books.book?.name as string} onBookOpen={undefined} onBookEdit={undefined} onBookDelete={undefined} author={books.book?.author as string} createdAt={books.book?.createdAt as Date}/>
+			<BookItem id={books.selectedBook?.id as string} name={books.selectedBook?.name as string} onBookOpen={undefined} onBookEdit={undefined} onBookDelete={undefined} author={books.selectedBook?.author as string} createdAt={books.selectedBook?.createdAt as Date}/>
 		</DialogContent>
 		<DialogActions>
 			<Button onClick={onCloseHandle}>Cancel</Button>

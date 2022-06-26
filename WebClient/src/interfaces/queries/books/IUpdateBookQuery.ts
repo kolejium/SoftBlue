@@ -1,6 +1,6 @@
-import Book from '../../../types/book';
+import BookType from '../../../types/book';
 
-interface IUpdateBookQuery extends Book {
+interface IUpdateBookQuery extends BookType {
 
 }
 

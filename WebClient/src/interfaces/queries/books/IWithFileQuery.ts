@@ -1,6 +1,6 @@
-interface WithFileQuery<T> {
+interface IWithFileQuery<T> {
     value: T,
-    source: File
+    source: File | undefined
 }
 
-export default WithFileQuery;
+export default IWithFileQuery;

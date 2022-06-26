@@ -3,14 +3,17 @@ import CreateBookModal from './create-book.modal.component';
 import DeleteBookModal from './delete-book.modal.component';
 import EditBookModal from './edit-book.modal.component';
 import PdfModal from './pdf.modal.component';
+import CreateBookcaseModal from './bookcase/create-bookcase.modal.component';
 
 import './modal.component.scss';
+
 
 const modals : { [name: string]: () => JSX.Element } = {
 	createBook: () => <CreateBookModal />,
 	deleteBook: () => <DeleteBookModal />,
 	editBook: () => <EditBookModal />,
-	pdf: () => <PdfModal />
+	pdf: () => <PdfModal />,
+	createBookcase: () => <CreateBookcaseModal />
 }
 
 function Modal () {

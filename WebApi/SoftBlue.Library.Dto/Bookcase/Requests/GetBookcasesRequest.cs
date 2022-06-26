@@ -7,4 +7,7 @@ public class GetBookcasesRequest : PagedRequest
 {
     public EOrder Order { get; set; }
 
+    public int? StartOrder { get; set; }
+
+    public int? EndOrder { get; set; }
 }

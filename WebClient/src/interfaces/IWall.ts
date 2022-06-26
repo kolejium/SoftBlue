@@ -1,8 +1,8 @@
-import Wall from '../types/wall';
+import WallType from '../types/wall';
 
 interface IWall {
     loading: boolean;
-    data: Wall;
+    data: WallType;
 }
 
 export default IWall;

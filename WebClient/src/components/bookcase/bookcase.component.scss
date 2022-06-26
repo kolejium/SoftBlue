@@ -1,22 +1,37 @@
-.bookcase {
-    background-image: url('../../assets/img/bookcase.png');;
-    background-repeat: no-repeat;
-    background-size: contain;
 
-    height: 100%;
-    width: 100%;
 
-    padding: 2% 2% 5% 2%;
+.bookcase-container {
+    position: relative;
 
-    display: flex;
-    flex-direction: column;
-    z-index: inherit;
-
-    .shelf {
-        display: flex;
-        flex-direction: row;
-        justify-content: left;
+    img {
+        position: relative;
         height: 100%;
-        z-index: inherit;
+    }
+
+    .bookcase {
+        height: 100%;
+        width: 100%;
+        padding: 3% 3% 5% 3%;
+        position: absolute;
+        top: 0;
+    
+        .shelf-container {
+            padding-bottom: 2%;
+            height: inherit;
+        }
+    
+        .shelf-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: inherit;
+        }
+    
+        .shelf {
+            display: flex;
+            flex-direction: row;
+            justify-content: left;
+            height: 100%;
+            z-index: inherit;
+        }
     }
 }

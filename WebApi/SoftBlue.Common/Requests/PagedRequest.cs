@@ -1,4 +1,5 @@
-﻿using SoftBlue.Common.Interfaces;
+﻿using SoftBlue.Common.Enums;
+using SoftBlue.Common.Interfaces;
 
 namespace SoftBlue.Common.Requests;
 
@@ -16,6 +17,10 @@ public class PagedRequest : IPagedRequest
     /// <inheritdoc cref="IPagedRequest.Size"/>
     /// <remarks>Default value is 10</remarks>
     public int Size { get; set; } = 10;
+
+    /// <inheritdoc cref="IPagedRequest.Direction"/>
+    /// <remarks>Default value is Begin</remarks>
+    public EDirection Direction { get; set; } = EDirection.Begin;
 
     #endregion
 }

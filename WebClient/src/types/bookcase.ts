@@ -1,6 +1,10 @@
-import Book from './book';
+import BookType from './book';
+import { Data } from './data';
 
-export type Bookcase = {
+type BookcaseType = Data & {
     order: number,
-    books: Book[]
+    shelfCount: number,
+    books: BookType[]
 }
+
+export default BookcaseType;

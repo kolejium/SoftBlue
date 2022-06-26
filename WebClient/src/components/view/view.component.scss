@@ -20,3 +20,11 @@
     padding: 5%;
     vertical-align:bottom
 }
+
+.wall-slider {
+    z-index: 1000;
+
+    * {
+        z-index: inherit;
+    }
+}

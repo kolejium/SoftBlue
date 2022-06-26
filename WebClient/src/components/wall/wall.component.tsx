@@ -1,22 +1,17 @@
 import * as React from 'react';
+import { useElementSize } from 'usehooks-ts';
+import WallType from '../../types/wall';
 
 import Bookcase from '../bookcase/bookcase.component';
 
 import './wall.component.scss';
 
-function Wall () {
-	const [data, setData] = React.useState(null);
-	const wall = React.createRef<HTMLDivElement>();
-
-	React.useEffect(() => {
-		console.log(wall.current?.clientWidth);
-	}, [wall.current, wall.current?.clientWidth])
-
-	return <div className="wall" ref={wall}>
-		<Bookcase />
-		<Bookcase />
-		<Bookcase />
-		<Bookcase />
+// eslint-disable-next-line no-redeclare
+function Wall (props: WallType) {
+	return <div className='wall'>
+		<div className='bookcase-wrapper'>
+			{props.bookcases.map(x => <Bookcase key={x.id} bookcase={x}/>)}
+		</div>
 	</div>;
 }
 

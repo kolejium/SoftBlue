@@ -24,7 +24,9 @@ module.exports = {
 	],
 	rules: {
 		semi: [0, 'always'],
-		indent: ['error', 'tab'],
+		indent: ['error', 'tab', {
+			SwitchCase: 1
+		}],
 		'array-callback-return': [0, { allowImplicit: false }],
 		'no-tabs': [0, 'always'],
 		'no-return-assign': [0, 'always'],

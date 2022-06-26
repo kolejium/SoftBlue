@@ -19,7 +19,7 @@ function SearchBar () {
 		dispatch(search(query));
 	}, [query]);
 
-	return <div >
+	return <div>
 		<Toolbar className={viewMode === 'smart' ? 'flex-row justify-content-between' : 'd-none'}>
 			<span>Search</span>
 			<IconButton onClick={() => dispatch(hide())}>

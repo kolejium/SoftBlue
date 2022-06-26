@@ -1,45 +1,24 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField } from '@mui/material';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch.hook';
 import useModalSelector from '../../../hooks/use-selector/use-modal-selector.hook';
-import ICreateBookQuery from '../../../interfaces/queries/books/ICreateBookQuery';
 import { changeVisible } from '../../../redux/slicers/modal.slice';
 import { create, createWithFile } from '../../../redux/thunks/books.thunk';
-import Upload from '../upload/upload.component';
 import useBooksSelector from '../../../hooks/use-selector/use-books-selector.hook';
 import EStatus from '../../../enums/estatus';
+import CreateBook, { CreateBookState } from '../book/create-book.component';
 
 function CreateBookModal () {
-	const [state, setState] = useState<ICreateBookQuery>({ name: '', author: '' });
-	const [file, setFile] = useState<File | undefined>(undefined);
-	const [validat, setValid] = useState<boolean>(false);
+	const [state, setState] = useState<CreateBookState>({ data: { value: { name: '', author: '' }, source: undefined }, valid: false });
 	const dispatch = useAppDispatch();
 	const modal = useModalSelector();
 	const books = useBooksSelector();
-
 	const onCloseHandle = () => dispatch(changeVisible(false));
-	const onSubmitHandle = () => {
-		if (file === undefined) {
-			dispatch(create(state));
-		} else {
-			dispatch(createWithFile({ value: state, source: file }));
-		}
-	}
-	const onLoadHandle = (file: File) => {
-		if (state.name.trim() === '') {
-			setState({ ...state, name: file.name });
-		}
-
-		setFile(file);
-	}
-
-	useEffect(() => {
-		setValid(state.name.trim() !== '');
-	}, [state]);
+	const onSubmitHandle = () => state.data.source === undefined ? dispatch(create(state.data.value)) : dispatch(createWithFile(state.data));
 
 	useEffect(() => {
 		if (books.status === EStatus.Resolved) {
-			setState({ name: '', author: '' });
+			setState({ data: { value: { name: '', author: '' }, source: undefined }, valid: false });
 		}
 	}, [books.status]);
 
@@ -51,15 +30,11 @@ function CreateBookModal () {
 			<DialogContentText>
 				To create new book, please enter name of book and author.
 			</DialogContentText>
-			<Stack>
-				<TextField error={validat === false} label="Name" helperText="Please enter name for book" value={state?.name} onChange={(e) => setState({ ...state, name: e.target.value })}/>
-				<TextField label="Author" helperText="Please enter author for book" value={state?.author} onChange={(e) => setState({ ...state, author: e.target.value })}/>
-				<Upload onLoad={onLoadHandle}/>
-			</Stack>
+			<CreateBook state={state} setState={setState}/>
 		</DialogContent>
 		<DialogActions>
 			<Button onClick={onCloseHandle}>Cancel</Button>
-			<Button disabled={validat === false} onClick={onSubmitHandle}>Create</Button>
+			<Button disabled={state.valid === false} onClick={onSubmitHandle}>Create</Button>
 		</DialogActions>
 	</Dialog>
 }

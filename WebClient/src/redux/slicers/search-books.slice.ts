@@ -1,20 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import Book from '../../types/book';
+import BookType from '../../types/book';
 import EStatus from '../../enums/estatus';
 import IPagedResponse from '../../interfaces/responses/IPagedResponse';
 import { search } from '../thunks/books.thunk';
 import IGetPagedBookQuery from '../../interfaces/queries/books/IGetPagedBooksQuery';
 import IGetBookQuery from '../../interfaces/queries/books/IGetBooksQuery';
 import IPaged from '../../interfaces/IPaged';
+import EDirection from '../../enums/edirection';
 
 type state = {
     query: IGetPagedBookQuery;
-    result: IPagedResponse<Book> | null;
+    result: IPagedResponse<BookType> | null;
     status: EStatus;
 }
 
 const initState : state = {
-	query: { page: 1, size: 10 },
+	query: { page: 1, size: 10, direction: EDirection.Begin },
 	result: null,
 	status: EStatus.Default
 };
@@ -33,7 +34,7 @@ const searchBooksSlice = createSlice({
 		updateQueryPagination (state, action : PayloadAction<IPaged>) {
 			state.query = { ...state.query, page: action.payload.page, size: action.payload.size } as IGetPagedBookQuery;
 		},
-		setBooks (state, action : PayloadAction<IPagedResponse<Book> | null>) {
+		setBooks (state, action : PayloadAction<IPagedResponse<BookType> | null>) {
 			state.result = action.payload;
 		}
 	},

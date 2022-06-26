@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using SoftBlue.Common.Enums;
 
 namespace SoftBlue.Common.Interfaces;
 
@@ -22,4 +23,9 @@ public interface IPagedRequest
     [Required]
     [Range(1, int.MaxValue, ErrorMessage = "Can't be less or equal that zero")]
     public int Size { get; set; }
+
+    /// <summary>
+    ///     Direction
+    /// </summary>
+    public EDirection Direction { get; set; }
 }

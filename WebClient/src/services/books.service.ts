@@ -1,7 +1,7 @@
 import IGetBooksQuery from '../interfaces/queries/books/IGetBooksQuery';
 import IPagedResponse from '../interfaces/responses/IPagedResponse';
 import IResponse from '../interfaces/responses/IResponse';
-import Book from '../types/book';
+import BookType from '../types/book';
 import { handle } from './query.service';
 import ICreateBookQuery from '../interfaces/queries/books/ICreateBookQuery';
 import { bookUrl, bookUrlWithFile } from '../consts/api';
@@ -12,26 +12,26 @@ import { serialize } from 'object-to-formdata';
 import { nameof } from 'ts-simple-nameof';
 
 
-function getBooks (query: IGetPagedBookQuery) : Promise<IResponse<IPagedResponse<Book>>> {
+function getBooks (query: IGetPagedBookQuery) : Promise<IResponse<IPagedResponse<BookType>>> {
 	const value = `${bookUrl}?${qs.stringify(query)}`;
 	const response = fetch(value)
 		.then(result => handle(result))
-		.then(async data => ({ result: data as IPagedResponse<Book> } as IResponse<IPagedResponse<Book>>))
-		.catch(error => ({ error: { text: error } } as IResponse<IPagedResponse<Book>>));
+		.then(async data => ({ result: data as IPagedResponse<BookType> } as IResponse<IPagedResponse<BookType>>))
+		.catch(error => ({ error: { text: error } } as IResponse<IPagedResponse<BookType>>));
 
 	return response;
 }
 
-function getBook (id: string) : Promise<IResponse<Book>> {
+function getBook (id: string) : Promise<IResponse<BookType>> {
 	const response = fetch(`${bookUrl}/${id}`)
 		.then(result => handle(result))
-		.then(async data => ({ result: data as Book } as IResponse<Book>))
-		.catch(error => ({ error: { text: error } } as IResponse<Book>));
+		.then(async data => ({ result: data as BookType } as IResponse<BookType>))
+		.catch(error => ({ error: { text: error } } as IResponse<BookType>));
 
 	return response;
 }
 
-function createBook (query: ICreateBookQuery) : Promise<IResponse<Book>> {
+function createBook (query: ICreateBookQuery) : Promise<IResponse<BookType>> {
 	const response = fetch(bookUrl, {
 		body: JSON.stringify(query),
 		method: 'POST',
@@ -42,8 +42,8 @@ function createBook (query: ICreateBookQuery) : Promise<IResponse<Book>> {
 		}
 	})
 		.then(result => handle(result))
-		.then(async data => ({ result: data as Book } as IResponse<Book>))
-		.catch(error => ({ error: { text: error } } as IResponse<Book>));
+		.then(async data => ({ result: data as BookType } as IResponse<BookType>))
+		.catch(error => ({ error: { text: error } } as IResponse<BookType>));
 
 	return response;
 }
@@ -57,7 +57,7 @@ function getPdf (id: string) : Promise<IResponse<string>> {
 	return response;
 }
 
-function createBookWithFile (query: IWithFileQuery<ICreateBookQuery>) : Promise<IResponse<Book>> {
+function createBookWithFile (query: IWithFileQuery<ICreateBookQuery>) : Promise<IResponse<BookType>> {
 	const formData = serialize(query, { nullsAsUndefineds: true });
 
 	const response = fetch(bookUrlWithFile, {
@@ -67,13 +67,13 @@ function createBookWithFile (query: IWithFileQuery<ICreateBookQuery>) : Promise<
 		credentials: 'same-origin'
 	})
 		.then(result => handle(result))
-		.then(async data => ({ result: data as Book } as IResponse<Book>))
-		.catch(error => ({ error: { text: error } } as IResponse<Book>));
+		.then(async data => ({ result: data as BookType } as IResponse<BookType>))
+		.catch(error => ({ error: { text: error } } as IResponse<BookType>));
 
 	return response;
 }
 
-function updateBook (query: ICreateBookQuery) : Promise<IResponse<Book>> {
+function updateBook (query: ICreateBookQuery) : Promise<IResponse<BookType>> {
 	const response = fetch(bookUrl, {
 		body: JSON.stringify(query),
 		method: 'PATCH',
@@ -84,17 +84,17 @@ function updateBook (query: ICreateBookQuery) : Promise<IResponse<Book>> {
 		}
 	})
 		.then(result => handle(result))
-		.then(async data => ({ result: data as Book } as IResponse<Book>))
-		.catch(error => ({ error: { text: error } } as IResponse<Book>));
+		.then(async data => ({ result: data as BookType } as IResponse<BookType>))
+		.catch(error => ({ error: { text: error } } as IResponse<BookType>));
 
 	return response;
 }
 
-function deleteBook (id: string) : Promise<IResponse<Book>> {
+function deleteBook (id: string) : Promise<IResponse<BookType>> {
 	const response = fetch(`${bookUrl}/${id}`, { method: 'DELETE' })
 		.then(result => handle(result))
-		.then(async data => ({ result: data as Book } as IResponse<Book>))
-		.catch(error => ({ error: { text: error } } as IResponse<Book>));
+		.then(async data => ({ result: data as BookType } as IResponse<BookType>))
+		.catch(error => ({ error: { text: error } } as IResponse<BookType>));
 
 	return response;
 }

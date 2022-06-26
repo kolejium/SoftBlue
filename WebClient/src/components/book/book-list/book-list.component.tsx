@@ -1,9 +1,9 @@
-import Book from '../../../types/book';
+import BookType from '../../../types/book';
 import IBookActions from '../../../interfaces/book/IBookActions';
 import BookItem from '../book-item/book-item.component';
 
 interface IBookListProps extends IBookActions {
-    books: Book[]
+    books: BookType[]
 }
 
 const BookList = (props: IBookListProps) =>

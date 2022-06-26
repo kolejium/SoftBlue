@@ -1,7 +1,7 @@
 import { Upload } from '@mui/icons-material';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Stack, TextField } from '@mui/material';
 import { useEffect, useState } from 'react';
-import Book from '../../../types/book';
+import BookType from '../../../types/book';
 import IUpdateBookQuery from '../../../interfaces/queries/books/IUpdateBookQuery';
 import EStatus from '../../../enums/estatus';
 import { useAppDispatch } from '../../../hooks/use-app-dispatch.hook';
@@ -11,14 +11,14 @@ import { changeVisible } from '../../../redux/slicers/modal.slice';
 import { editBook } from '../../../redux/thunks/modal.thunk';
 
 function EditBookModal () {
-	const [state, setState] = useState<Book | undefined>(undefined);
+	const [state, setState] = useState<BookType | undefined>(undefined);
 	const [validat, setValid] = useState<boolean>(false);
 	const dispatch = useAppDispatch();
 	const modal = useModalSelector();
 	const books = useBooksSelector();
 
 	const onCloseHandle = () => dispatch(changeVisible(false));
-	const onSubmitHandle = () => dispatch(editBook(state as Book));
+	const onSubmitHandle = () => dispatch(editBook(state as BookType));
 	const onLoadHandle = (file: File) => {
 		if (state !== undefined && state.name.trim() === '') {
 			setState({ ...state, name: file.name });
@@ -26,8 +26,8 @@ function EditBookModal () {
 	}
 
 	useEffect(() => {
-		if (books.book !== undefined) {
-			setState(books.book as Book);
+		if (books.selectedBook !== undefined) {
+			setState(books.selectedBook as BookType);
 		}
 	}, [books]);
 

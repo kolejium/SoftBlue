@@ -1,8 +1,7 @@
-import { Bookcase } from './bookcase';
+import BookcaseType from './bookcase';
 
-type Wall = {
-    bookcases: Bookcase[],
-    order: number
+type WallType = {
+    bookcases: BookcaseType[],
 }
 
-export default Wall;
+export default WallType;
